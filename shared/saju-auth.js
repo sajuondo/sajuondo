@@ -6,7 +6,7 @@
 (function() {
   'use strict';
 
-  const SUPABASE_URL = 'https://hzuyolgaslvybvxgyiux.supabase.co';
+  const SUPABASE_URL = 'https://ginvsakkdiaqznqwmasz.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_ivnJ7WpsgSf0Xkx0SJPstA_yvr4pwQO';
 
   let _sbCache = null;
