@@ -1,0 +1,246 @@
+/* ============================================================
+ * 사주온도 — 공통 디자인 시스템
+ * 크림/베이지 럭셔리 매거진 톤
+ * ============================================================ */
+
+:root {
+  /* Backgrounds */
+  --bg:        #F5F1EC;
+  --bg-2:      #EFEBE4;
+  --bg-3:      #E8E2D7;
+  --bg-dark:   #111009;
+
+  /* Ink (text) */
+  --ink:       #141210;
+  --ink-2:     #3A3530;
+  --ink-3:     #7A7068;
+  --ink-4:     #A89F96;
+  --ink-light: #3A3530;
+  --ink-muted: #7A7068;
+
+  /* Accent */
+  --mint:      #00C9A7;
+  --mint-dim:  rgba(0,201,167,.12);
+  --mint-dark: #007a65;
+  --mint-pale: #d0f5ef;
+  --gold:      #B8923A;
+  --gold-light:#D4B87A;
+
+  /* 오행 */
+  --wood:  #5A7A3A;
+  --fire:  #D64545;
+  --earth: #B8923A;
+  --metal: #7A8896;
+  --water: #3A6070;
+
+  /* Lines */
+  --line:   rgba(20,18,16,.1);
+  --line2:  rgba(20,18,16,.06);
+  --border: rgba(20,18,16,.1);
+  --shadow: rgba(20,18,16,.06);
+
+  /* Cream alias */
+  --cream:      #F5F1EC;
+  --cream-dark: #EFEBE4;
+
+  /* Temperature scale colors */
+  --temp-cold: #4A6B85;
+  --temp-cool: #7A99A8;
+  --temp-mild: #B89B6B;
+  --temp-warm: #C97548;
+  --temp-hot:  #B84A2E;
+}
+
+* , *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, textarea, select { font-family: inherit; }
+
+/* ── 공통 NAV ── */
+.global-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 32px;
+  background: rgba(245,241,236,.92);
+  backdrop-filter: blur(20px) saturate(160%);
+  border-bottom: 1px solid var(--line2);
+}
+
+.nav-logo {
+  display: flex; flex-direction: column; cursor: pointer; gap: 0;
+}
+.nav-logo-main { display: flex; align-items: flex-end; line-height: 1; }
+.nav-logo-saju {
+  font-family: 'DM Serif Display', serif; font-style: italic;
+  font-size: 10px; color: var(--ink-4); letter-spacing: .06em;
+  margin-left: 2px; margin-bottom: -1px; align-self: flex-end;
+  padding-bottom: 6px;
+}
+.nav-logo-O {
+  font-family: 'DM Serif Display', serif;
+  font-size: 38px; line-height: .88; color: var(--ink); letter-spacing: -.03em;
+}
+.nav-logo-nc {
+  display: flex; flex-direction: column; padding-bottom: 3px; margin-left: -2px;
+}
+.nav-logo-n {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px; line-height: 1; color: var(--ink); letter-spacing: -.02em;
+}
+.nav-logo-c {
+  font-family: 'DM Serif Display', serif; font-style: italic;
+  font-size: 14px; line-height: 1; color: var(--mint); margin-top: 2px;
+}
+.nav-logo-tag {
+  font-family: 'DM Serif Display', serif; font-style: italic;
+  font-size: 9px; color: var(--ink-4); letter-spacing: .12em;
+  margin-top: 3px; text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex; gap: 28px; align-items: center;
+}
+.nav-link {
+  font-size: 13px; color: var(--ink-2); letter-spacing: .03em;
+  position: relative; padding: 4px 0;
+  transition: color .2s;
+}
+.nav-link:hover { color: var(--ink); }
+.nav-link.active { color: var(--mint-dark); }
+.nav-link.active::after {
+  content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 1px; background: var(--mint);
+}
+
+.nav-auth {
+  display: flex; gap: 12px; align-items: center;
+  font-size: 12px;
+}
+.nav-user-chip {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 12px; border: 1px solid var(--line);
+  border-radius: 999px; background: rgba(255,255,255,.5);
+}
+.nav-user-temp {
+  font-family: 'DM Serif Display', serif;
+  font-size: 14px; color: var(--mint-dark);
+}
+
+/* ── 공통 컴포넌트: 버튼 ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 28px;
+  font-size: 13px; letter-spacing: .04em;
+  border-radius: 999px;
+  transition: all .25s ease;
+  border: 1px solid transparent;
+}
+.btn-primary {
+  background: var(--ink); color: var(--cream);
+}
+.btn-primary:hover { background: var(--mint-dark); transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent; color: var(--ink); border-color: var(--line);
+}
+.btn-ghost:hover { background: var(--bg-2); border-color: var(--ink-3); }
+.btn-mint {
+  background: var(--mint); color: var(--ink);
+}
+.btn-mint:hover { background: var(--mint-dark); color: var(--cream); }
+
+/* ── 공통 컴포넌트: 카드 ── */
+.card {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 32px;
+}
+.card-clean {
+  background: rgba(255,255,255,.6);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+/* ── 공통 컴포넌트: Eyebrow + Title ── */
+.section-eyebrow {
+  font-family: 'DM Serif Display', serif; font-style: italic;
+  font-size: 12px; color: var(--mint-dark); letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.1; letter-spacing: -.02em;
+  color: var(--ink); margin-bottom: 16px;
+}
+.section-title em { font-style: italic; color: var(--mint-dark); }
+.section-desc {
+  font-size: 14px; color: var(--ink-3); letter-spacing: .03em;
+  line-height: 1.7;
+}
+
+/* ── 온도 칩 (커뮤니티에서 작성자 표시용) ── */
+.temp-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 10px; border-radius: 999px;
+  background: var(--bg-3);
+  font-family: 'DM Serif Display', serif;
+  font-size: 12px; color: var(--ink-2);
+}
+.temp-chip-cool { background: rgba(74,107,133,.12); color: var(--temp-cold); }
+.temp-chip-mild { background: rgba(184,155,107,.15); color: var(--temp-mild); }
+.temp-chip-hot  { background: rgba(184,74,46,.12); color: var(--temp-hot); }
+
+/* ── 알림 / 토스트 ── */
+.toast {
+  position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+  background: var(--ink); color: var(--cream);
+  padding: 12px 24px; border-radius: 8px;
+  font-size: 13px; z-index: 9999;
+  opacity: 0; transition: opacity .3s;
+}
+.toast.show { opacity: 1; }
+
+/* ── 모바일 ── */
+@media (max-width: 768px) {
+  .global-nav { padding: 12px 20px; }
+  .nav-links { display: none; }
+  .nav-logo-O { font-size: 32px; }
+  .nav-logo-n { font-size: 15px; }
+  .nav-logo-c { font-size: 12px; }
+  body { padding-bottom: 64px; }
+}
+
+/* ── 모바일 하단 탭바 ── */
+.mobile-tabbar {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 150;
+  background: rgba(245,241,236,.96);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--line);
+  padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+}
+@media (max-width: 768px) {
+  .mobile-tabbar { display: flex; }
+}
+.tabbar-item {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; gap: 4px;
+  padding: 6px 0;
+  font-size: 10px; color: var(--ink-3);
+  text-decoration: none;
+}
+.tabbar-item.active { color: var(--mint-dark); }
+.tabbar-icon { font-size: 18px; line-height: 1; }
