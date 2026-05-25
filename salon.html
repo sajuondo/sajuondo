@@ -73,24 +73,56 @@ main.salon {
 
 /* ── 메인 콘텐츠 영역 ── */
 .feed-header {
+  position: relative;
+  padding: 18px 0 28px;
+  margin-bottom: 36px;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  box-shadow: 0 2px 0 var(--ink);  /* 더블 라인 효과 (Vogue 스타일) */
+}
+.feed-header::before {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 1px;
+  background: var(--ink);
+}
+.feed-header-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 11px;
+  color: var(--mint-dark);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.feed-header-eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+  margin-left: 4px;
+}
+.feed-header-main {
   display: flex; justify-content: space-between; align-items: flex-end;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 32px;
   gap: 24px;
 }
 .feed-title {
   font-family: 'DM Serif Display', serif;
-  font-size: clamp(28px, 4vw, 42px);
-  line-height: 1.05;
-  letter-spacing: -.02em;
+  font-size: clamp(34px, 5vw, 54px);
+  line-height: 1;
+  letter-spacing: -.025em;
   color: var(--ink);
 }
 .feed-title em { font-style: italic; color: var(--mint-dark); }
 .feed-subtitle {
-  font-size: 13px; color: var(--ink-3);
-  margin-top: 8px;
-  letter-spacing: .02em;
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-3);
+  margin-top: 10px;
+  letter-spacing: .01em;
 }
 .feed-actions {
   display: flex; gap: 8px;
@@ -435,17 +467,17 @@ main.salon {
   <!-- 사이드바 -->
   <aside class="sidebar">
     <div class="sidebar-section">
-      <div class="sidebar-eyebrow">일간별 · Team</div>
+      <div class="sidebar-eyebrow">Team</div>
 
       <!-- 木 -->
       <div class="sidebar-group">
         <div class="sidebar-group-label"><span class="elem-han elem-wood">木</span> 木 Wood</div>
         <div class="sidebar-room" data-type="ilgan" data-value="gap">
-          <div class="sidebar-room-name"><span class="team-han team-wood">甲</span>팀 갑목</div>
+          <div class="sidebar-room-name"><span class="team-han team-wood">甲</span>갑목</div>
           <div class="sidebar-room-meta">내 길은 내가 만든다</div>
         </div>
         <div class="sidebar-room" data-type="ilgan" data-value="eul">
-          <div class="sidebar-room-name"><span class="team-han team-wood">乙</span>팀 을목</div>
+          <div class="sidebar-room-name"><span class="team-han team-wood">乙</span>을목</div>
           <div class="sidebar-room-meta">유연하게 휘어진다</div>
         </div>
       </div>
@@ -454,11 +486,11 @@ main.salon {
       <div class="sidebar-group">
         <div class="sidebar-group-label"><span class="elem-han elem-fire">火</span> 火 Fire</div>
         <div class="sidebar-room" data-type="ilgan" data-value="byeong">
-          <div class="sidebar-room-name"><span class="team-han team-fire">丙</span>팀 병화</div>
+          <div class="sidebar-room-name"><span class="team-han team-fire">丙</span>병화</div>
           <div class="sidebar-room-meta">세상을 비춘다</div>
         </div>
         <div class="sidebar-room" data-type="ilgan" data-value="jeong">
-          <div class="sidebar-room-name"><span class="team-han team-fire">丁</span>팀 정화</div>
+          <div class="sidebar-room-name"><span class="team-han team-fire">丁</span>정화</div>
           <div class="sidebar-room-meta">어둠 속의 등불</div>
         </div>
       </div>
@@ -467,11 +499,11 @@ main.salon {
       <div class="sidebar-group">
         <div class="sidebar-group-label"><span class="elem-han elem-earth">土</span> 土 Earth</div>
         <div class="sidebar-room" data-type="ilgan" data-value="mu">
-          <div class="sidebar-room-name"><span class="team-han team-earth">戊</span>팀 무토</div>
+          <div class="sidebar-room-name"><span class="team-han team-earth">戊</span>무토</div>
           <div class="sidebar-room-meta">흔들리지 않는다</div>
         </div>
         <div class="sidebar-room" data-type="ilgan" data-value="gi">
-          <div class="sidebar-room-name"><span class="team-han team-earth">己</span>팀 기토</div>
+          <div class="sidebar-room-name"><span class="team-han team-earth">己</span>기토</div>
           <div class="sidebar-room-meta">모두를 품는 땅</div>
         </div>
       </div>
@@ -480,11 +512,11 @@ main.salon {
       <div class="sidebar-group">
         <div class="sidebar-group-label"><span class="elem-han elem-metal">金</span> 金 Metal</div>
         <div class="sidebar-room" data-type="ilgan" data-value="gyeong">
-          <div class="sidebar-room-name"><span class="team-han team-metal">庚</span>팀 경금</div>
+          <div class="sidebar-room-name"><span class="team-han team-metal">庚</span>경금</div>
           <div class="sidebar-room-meta">단호하게 베어낸다</div>
         </div>
         <div class="sidebar-room" data-type="ilgan" data-value="sin">
-          <div class="sidebar-room-name"><span class="team-han team-metal">辛</span>팀 신금</div>
+          <div class="sidebar-room-name"><span class="team-han team-metal">辛</span>신금</div>
           <div class="sidebar-room-meta">다듬어진 보석</div>
         </div>
       </div>
@@ -493,11 +525,11 @@ main.salon {
       <div class="sidebar-group">
         <div class="sidebar-group-label"><span class="elem-han elem-water">水</span> 水 Water</div>
         <div class="sidebar-room" data-type="ilgan" data-value="im">
-          <div class="sidebar-room-name"><span class="team-han team-water">壬</span>팀 임수</div>
+          <div class="sidebar-room-name"><span class="team-han team-water">壬</span>임수</div>
           <div class="sidebar-room-meta">큰 흐름을 만든다</div>
         </div>
         <div class="sidebar-room" data-type="ilgan" data-value="gye">
-          <div class="sidebar-room-name"><span class="team-han team-water">癸</span>팀 계수</div>
+          <div class="sidebar-room-name"><span class="team-han team-water">癸</span>계수</div>
           <div class="sidebar-room-meta">스며들어 적신다</div>
         </div>
       </div>
@@ -546,14 +578,20 @@ main.salon {
     <!-- 글 목록 뷰 -->
     <div id="feed-view">
       <div class="feed-header">
-        <div>
-          <h1 class="feed-title" id="feed-title">자유 <em>게시판</em></h1>
-          <div class="feed-subtitle" id="feed-subtitle">아무 이야기나 자유롭게</div>
+        <div class="feed-header-eyebrow">
+          <span>Salon</span>
+          <span id="feed-header-section">— Now Reading</span>
         </div>
-        <div class="feed-actions">
-          <button class="btn btn-primary" id="btn-write" style="padding:10px 20px;font-size:12px;">
-            ✦ 글쓰기
-          </button>
+        <div class="feed-header-main">
+          <div>
+            <h1 class="feed-title" id="feed-title">자유 <em>게시판</em></h1>
+            <div class="feed-subtitle" id="feed-subtitle">아무 이야기나 자유롭게</div>
+          </div>
+          <div class="feed-actions">
+            <button class="btn btn-primary" id="btn-write" style="padding:10px 20px;font-size:12px;">
+              ✦ 글쓰기
+            </button>
+          </div>
         </div>
       </div>
 
@@ -677,16 +715,16 @@ function toast(msg) {
 // 방 메타 정보
 const ROOM_META = {
   // 일간별 팀 (10개)
-  'ilgan:gap':     { title: '<em>甲</em> 팀 갑목', subtitle: '내 길은 내가 만든다 · 양목', anon: false },
-  'ilgan:eul':     { title: '<em>乙</em> 팀 을목', subtitle: '유연하게 휘어진다 · 음목', anon: false },
-  'ilgan:byeong':  { title: '<em>丙</em> 팀 병화', subtitle: '세상을 비춘다 · 양화', anon: false },
-  'ilgan:jeong':   { title: '<em>丁</em> 팀 정화', subtitle: '어둠 속의 등불 · 음화', anon: false },
-  'ilgan:mu':      { title: '<em>戊</em> 팀 무토', subtitle: '흔들리지 않는다 · 양토', anon: false },
-  'ilgan:gi':      { title: '<em>己</em> 팀 기토', subtitle: '모두를 품는 땅 · 음토', anon: false },
-  'ilgan:gyeong':  { title: '<em>庚</em> 팀 경금', subtitle: '단호하게 베어낸다 · 양금', anon: false },
-  'ilgan:sin':     { title: '<em>辛</em> 팀 신금', subtitle: '다듬어진 보석 · 음금', anon: false },
-  'ilgan:im':      { title: '<em>壬</em> 팀 임수', subtitle: '큰 흐름을 만든다 · 양수', anon: false },
-  'ilgan:gye':     { title: '<em>癸</em> 팀 계수', subtitle: '스며들어 적신다 · 음수', anon: false },
+  'ilgan:gap':     { title: '<em>甲</em> 갑목', subtitle: '내 길은 내가 만든다 · 양목', anon: false },
+  'ilgan:eul':     { title: '<em>乙</em> 을목', subtitle: '유연하게 휘어진다 · 음목', anon: false },
+  'ilgan:byeong':  { title: '<em>丙</em> 병화', subtitle: '세상을 비춘다 · 양화', anon: false },
+  'ilgan:jeong':   { title: '<em>丁</em> 정화', subtitle: '어둠 속의 등불 · 음화', anon: false },
+  'ilgan:mu':      { title: '<em>戊</em> 무토', subtitle: '흔들리지 않는다 · 양토', anon: false },
+  'ilgan:gi':      { title: '<em>己</em> 기토', subtitle: '모두를 품는 땅 · 음토', anon: false },
+  'ilgan:gyeong':  { title: '<em>庚</em> 경금', subtitle: '단호하게 베어낸다 · 양금', anon: false },
+  'ilgan:sin':     { title: '<em>辛</em> 신금', subtitle: '다듬어진 보석 · 음금', anon: false },
+  'ilgan:im':      { title: '<em>壬</em> 임수', subtitle: '큰 흐름을 만든다 · 양수', anon: false },
+  'ilgan:gye':     { title: '<em>癸</em> 계수', subtitle: '스며들어 적신다 · 음수', anon: false },
   // 고민방
   'topic:love':    { title: '💗 연애 · <em>궁합</em>', subtitle: '익명으로 마음을 털어놓는 곳', anon: true },
   'topic:career':  { title: '💼 진로 · <em>취업</em>', subtitle: '커리어 고민을 함께 나눠요', anon: true },
@@ -827,6 +865,15 @@ async function loadRoom() {
   const meta = ROOM_META[key] || { title: '게시판', subtitle: '', anon: false };
   document.getElementById('feed-title').innerHTML = meta.title;
   document.getElementById('feed-subtitle').textContent = meta.subtitle;
+
+  // eyebrow 섹션 라벨 업데이트
+  const sectionLabels = {
+    ilgan: '— Team',
+    topic: '— Topic',
+    free:  '— Free'
+  };
+  const sectionEl = document.getElementById('feed-header-section');
+  if (sectionEl) sectionEl.textContent = sectionLabels[currentRoom.type] || '— Now Reading';
 
   // 글 목록 로드
   const list = document.getElementById('post-list');
