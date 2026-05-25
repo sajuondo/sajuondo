@@ -670,7 +670,7 @@ async function loadRoom() {
   list.innerHTML = '<div class="empty-state"><div class="empty-state-desc">불러오는 중...</div></div>';
 
   try {
-    const { data, error } = await sb
+    const { data, error } = await getSb()
       .from('posts')
       .select('*')
       .eq('room_type', currentRoom.type)
