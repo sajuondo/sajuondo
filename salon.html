@@ -97,6 +97,86 @@ main.salon {
   flex-shrink: 0;
 }
 
+/* ── 사이드바: 일간 팀 그룹 ── */
+.sidebar-group {
+  margin-bottom: 18px;
+}
+.sidebar-group-label {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 10px;
+  color: var(--ink-3);
+  letter-spacing: .12em;
+  margin: 14px 0 6px;
+  padding-left: 4px;
+}
+.elem-han {
+  font-family: 'DM Serif Display', serif;
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 400;
+}
+.elem-wood  { color: #5A7A3A; }
+.elem-fire  { color: #C04A2E; }
+.elem-earth { color: #8A6D29; }
+.elem-metal { color: #6E7A88; }
+.elem-water { color: #3A5A70; }
+
+.team-han {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px; height: 24px;
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 14px;
+  border-radius: 50%;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+.team-wood  { background: rgba(90,122,58,.10);  color: #5A7A3A; }
+.team-fire  { background: rgba(192,74,46,.10);  color: #C04A2E; }
+.team-earth { background: rgba(138,109,41,.10); color: #8A6D29; }
+.team-metal { background: rgba(110,122,136,.12);color: #6E7A88; }
+.team-water { background: rgba(58,90,112,.10);  color: #3A5A70; }
+
+.sidebar-room {
+  display: flex; flex-direction: column;
+  padding: 8px 12px;
+  margin-bottom: 2px;
+}
+.sidebar-room-name {
+  display: flex; align-items: center;
+  font-size: 13px;
+  font-weight: 500;
+}
+.sidebar-room-meta {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 11px;
+  color: var(--ink-4);
+  margin-top: 1px;
+  padding-left: 32px;
+}
+.sidebar-room.active .sidebar-room-meta { color: rgba(245,241,236,.55); }
+
+.my-team-badge {
+  margin-left: auto;
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 10px;
+  color: var(--mint-dark);
+  background: rgba(0,201,167,.10);
+  padding: 1px 8px;
+  border-radius: 999px;
+  letter-spacing: .04em;
+}
+.sidebar-room.active .my-team-badge {
+  background: rgba(245,241,236,.15);
+  color: var(--mint);
+}
+
 /* ── 글 목록 ── */
 .post-list { display: flex; flex-direction: column; }
 .post-item {
@@ -355,27 +435,71 @@ main.salon {
   <!-- 사이드바 -->
   <aside class="sidebar">
     <div class="sidebar-section">
-      <div class="sidebar-eyebrow">온도대별</div>
-      <div class="sidebar-room" data-type="temp" data-value="cool">
-        <div class="sidebar-room-name">
-          <span class="temp-chip temp-chip-cool">冷</span>
-          차가운 방
+      <div class="sidebar-eyebrow">일간별 · Team</div>
+
+      <!-- 木 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-label"><span class="elem-han elem-wood">木</span> 木 Wood</div>
+        <div class="sidebar-room" data-type="ilgan" data-value="gap">
+          <div class="sidebar-room-name"><span class="team-han team-wood">甲</span>팀 갑목</div>
+          <div class="sidebar-room-meta">내 길은 내가 만든다</div>
         </div>
-        <div class="sidebar-room-meta">−10°c 이하 · 깊이있는 사람들</div>
+        <div class="sidebar-room" data-type="ilgan" data-value="eul">
+          <div class="sidebar-room-name"><span class="team-han team-wood">乙</span>팀 을목</div>
+          <div class="sidebar-room-meta">유연하게 휘어진다</div>
+        </div>
       </div>
-      <div class="sidebar-room" data-type="temp" data-value="mild">
-        <div class="sidebar-room-name">
-          <span class="temp-chip temp-chip-mild">溫</span>
-          따뜻한 방
+
+      <!-- 火 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-label"><span class="elem-han elem-fire">火</span> 火 Fire</div>
+        <div class="sidebar-room" data-type="ilgan" data-value="byeong">
+          <div class="sidebar-room-name"><span class="team-han team-fire">丙</span>팀 병화</div>
+          <div class="sidebar-room-meta">세상을 비춘다</div>
         </div>
-        <div class="sidebar-room-meta">−10 ~ 15°c · 균형잡힌 사람들</div>
+        <div class="sidebar-room" data-type="ilgan" data-value="jeong">
+          <div class="sidebar-room-name"><span class="team-han team-fire">丁</span>팀 정화</div>
+          <div class="sidebar-room-meta">어둠 속의 등불</div>
+        </div>
       </div>
-      <div class="sidebar-room" data-type="temp" data-value="hot">
-        <div class="sidebar-room-name">
-          <span class="temp-chip temp-chip-hot">炎</span>
-          뜨거운 방
+
+      <!-- 土 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-label"><span class="elem-han elem-earth">土</span> 土 Earth</div>
+        <div class="sidebar-room" data-type="ilgan" data-value="mu">
+          <div class="sidebar-room-name"><span class="team-han team-earth">戊</span>팀 무토</div>
+          <div class="sidebar-room-meta">흔들리지 않는다</div>
         </div>
-        <div class="sidebar-room-meta">15°c 이상 · 열정적인 사람들</div>
+        <div class="sidebar-room" data-type="ilgan" data-value="gi">
+          <div class="sidebar-room-name"><span class="team-han team-earth">己</span>팀 기토</div>
+          <div class="sidebar-room-meta">모두를 품는 땅</div>
+        </div>
+      </div>
+
+      <!-- 金 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-label"><span class="elem-han elem-metal">金</span> 金 Metal</div>
+        <div class="sidebar-room" data-type="ilgan" data-value="gyeong">
+          <div class="sidebar-room-name"><span class="team-han team-metal">庚</span>팀 경금</div>
+          <div class="sidebar-room-meta">단호하게 베어낸다</div>
+        </div>
+        <div class="sidebar-room" data-type="ilgan" data-value="sin">
+          <div class="sidebar-room-name"><span class="team-han team-metal">辛</span>팀 신금</div>
+          <div class="sidebar-room-meta">다듬어진 보석</div>
+        </div>
+      </div>
+
+      <!-- 水 -->
+      <div class="sidebar-group">
+        <div class="sidebar-group-label"><span class="elem-han elem-water">水</span> 水 Water</div>
+        <div class="sidebar-room" data-type="ilgan" data-value="im">
+          <div class="sidebar-room-name"><span class="team-han team-water">壬</span>팀 임수</div>
+          <div class="sidebar-room-meta">큰 흐름을 만든다</div>
+        </div>
+        <div class="sidebar-room" data-type="ilgan" data-value="gye">
+          <div class="sidebar-room-name"><span class="team-han team-water">癸</span>팀 계수</div>
+          <div class="sidebar-room-meta">스며들어 적신다</div>
+        </div>
       </div>
     </div>
 
@@ -400,7 +524,7 @@ main.salon {
 
     <div class="sidebar-section">
       <div class="sidebar-eyebrow">Free</div>
-      <div class="sidebar-room active" data-type="free" data-value="free">
+      <div class="sidebar-room" data-type="free" data-value="free">
         <div class="sidebar-room-name">📖 자유 게시판</div>
         <div class="sidebar-room-meta">아무 이야기나</div>
       </div>
@@ -552,15 +676,31 @@ function toast(msg) {
 
 // 방 메타 정보
 const ROOM_META = {
-  'temp:cool': { title: '冷 · <em>차가운 방</em>', subtitle: '−10°c 이하 · 깊이있는 사람들', anon: false },
-  'temp:mild': { title: '溫 · <em>따뜻한 방</em>', subtitle: '−10 ~ 15°c · 균형잡힌 사람들', anon: false },
-  'temp:hot':  { title: '炎 · <em>뜨거운 방</em>', subtitle: '15°c 이상 · 열정적인 사람들', anon: false },
-  'topic:love':   { title: '💗 연애 · <em>궁합</em>', subtitle: '익명으로 마음을 털어놓는 곳', anon: true },
-  'topic:career': { title: '💼 진로 · <em>취업</em>', subtitle: '커리어 고민을 함께 나눠요', anon: true },
-  'topic:money':  { title: '💰 돈 · <em>재물운</em>', subtitle: '돈 이야기, 솔직하게', anon: true },
-  'topic:health': { title: '🌿 건강 · <em>마음</em>', subtitle: '몸과 마음을 돌보는 대화', anon: true },
-  'topic:family': { title: '🏠 가족 · <em>관계</em>', subtitle: '가까운 사람들 이야기', anon: true },
-  'free:free':    { title: '자유 <em>게시판</em>', subtitle: '아무 이야기나 자유롭게', anon: false }
+  // 일간별 팀 (10개)
+  'ilgan:gap':     { title: '<em>甲</em> 팀 갑목', subtitle: '내 길은 내가 만든다 · 양목', anon: false },
+  'ilgan:eul':     { title: '<em>乙</em> 팀 을목', subtitle: '유연하게 휘어진다 · 음목', anon: false },
+  'ilgan:byeong':  { title: '<em>丙</em> 팀 병화', subtitle: '세상을 비춘다 · 양화', anon: false },
+  'ilgan:jeong':   { title: '<em>丁</em> 팀 정화', subtitle: '어둠 속의 등불 · 음화', anon: false },
+  'ilgan:mu':      { title: '<em>戊</em> 팀 무토', subtitle: '흔들리지 않는다 · 양토', anon: false },
+  'ilgan:gi':      { title: '<em>己</em> 팀 기토', subtitle: '모두를 품는 땅 · 음토', anon: false },
+  'ilgan:gyeong':  { title: '<em>庚</em> 팀 경금', subtitle: '단호하게 베어낸다 · 양금', anon: false },
+  'ilgan:sin':     { title: '<em>辛</em> 팀 신금', subtitle: '다듬어진 보석 · 음금', anon: false },
+  'ilgan:im':      { title: '<em>壬</em> 팀 임수', subtitle: '큰 흐름을 만든다 · 양수', anon: false },
+  'ilgan:gye':     { title: '<em>癸</em> 팀 계수', subtitle: '스며들어 적신다 · 음수', anon: false },
+  // 고민방
+  'topic:love':    { title: '💗 연애 · <em>궁합</em>', subtitle: '익명으로 마음을 털어놓는 곳', anon: true },
+  'topic:career':  { title: '💼 진로 · <em>취업</em>', subtitle: '커리어 고민을 함께 나눠요', anon: true },
+  'topic:money':   { title: '💰 돈 · <em>재물운</em>', subtitle: '돈 이야기, 솔직하게', anon: true },
+  'topic:health':  { title: '🌿 건강 · <em>마음</em>', subtitle: '몸과 마음을 돌보는 대화', anon: true },
+  'topic:family':  { title: '🏠 가족 · <em>관계</em>', subtitle: '가까운 사람들 이야기', anon: true },
+  // 자유
+  'free:free':     { title: '자유 <em>게시판</em>', subtitle: '아무 이야기나 자유롭게', anon: false }
+};
+
+// 한자 일간 → 팀 코드 매핑 (자동 입장용)
+const ILGAN_TO_TEAM = {
+  '甲': 'gap', '乙': 'eul', '丙': 'byeong', '丁': 'jeong', '戊': 'mu',
+  '己': 'gi', '庚': 'gyeong', '辛': 'sin', '壬': 'im', '癸': 'gye'
 };
 
 /* ── 초기화 ── */
@@ -602,6 +742,29 @@ const ROOM_META = {
 
   // 게이트 안내 표시 여부
   updateGatePrompt();
+
+  // 본인 일간 팀에 "내 팀" 배지 + 자동 진입
+  if (currentSaju && currentSaju.ilgan) {
+    const myTeam = ILGAN_TO_TEAM[currentSaju.ilgan];
+    if (myTeam) {
+      const myRoomEl = document.querySelector(`.sidebar-room[data-type="ilgan"][data-value="${myTeam}"]`);
+      if (myRoomEl) {
+        // "내 팀" 배지 추가
+        const nameEl = myRoomEl.querySelector('.sidebar-room-name');
+        if (nameEl && !nameEl.querySelector('.my-team-badge')) {
+          nameEl.insertAdjacentHTML('beforeend',
+            '<span class="my-team-badge">내 팀</span>');
+        }
+        // 본인 팀으로 자동 진입
+        currentRoom = { type: 'ilgan', value: myTeam };
+        myRoomEl.classList.add('active');
+      }
+    }
+  } else {
+    // 사주 분석 안 한 경우 자유 게시판으로 기본 진입
+    const freeEl = document.querySelector('.sidebar-room[data-type="free"]');
+    if (freeEl) freeEl.classList.add('active');
+  }
 
   // 사이드바 이벤트
   document.querySelectorAll('.sidebar-room').forEach(el => {
