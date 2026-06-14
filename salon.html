@@ -314,6 +314,41 @@ main.salon {
 .post-item:hover {
   padding-left: 8px;
 }
+
+/* 공지(Pinned) 글 — 시각적으로 강조 */
+.post-item-pinned {
+  position: relative;
+  padding: 24px 22px 22px;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, rgba(0,201,167,.05), rgba(184,146,58,.04));
+  border: 1px solid rgba(0,201,167,.2);
+  border-radius: 12px;
+  border-bottom: 1px solid rgba(0,201,167,.2);
+}
+.post-item-pinned:hover {
+  padding-left: 22px;
+  border-color: rgba(0,201,167,.35);
+  background: linear-gradient(135deg, rgba(0,201,167,.08), rgba(184,146,58,.06));
+}
+.post-item-pinned .post-item-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.pinned-badge {
+  display: inline-block;
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 10px;
+  color: var(--mint-dark);
+  background: rgba(0,201,167,.10);
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
 .post-item-meta {
   display: flex; align-items: center; gap: 10px;
   font-size: 12px; color: var(--ink-3);
@@ -1051,7 +1086,8 @@ async function loadRoom() {
       .select('*')
       .eq('room_type', currentRoom.type)
       .eq('room_value', currentRoom.value)
-      .order('created_at', { ascending: false })
+      .order('is_pinned', { ascending: false })  // 공지 먼저
+      .order('created_at', { ascending: false })  // 그 다음 최신순
       .limit(50);
 
     if (error) throw error;
@@ -1080,12 +1116,14 @@ function renderPostItem(p) {
   const date = new Date(p.created_at);
   const dateStr = formatDate(date);
   const isAnon = p.is_anonymous;
+  const isPinned = p.is_pinned;
   const tempClass = p.temperature == null ? '' :
     p.temperature <= -10 ? 'temp-chip-cool' :
     p.temperature <= 15 ? 'temp-chip-mild' : 'temp-chip-hot';
 
   return `
-    <div class="post-item" data-post-id="${p.id}">
+    <div class="post-item ${isPinned ? 'post-item-pinned' : ''}" data-post-id="${p.id}">
+      ${isPinned ? '<div class="pinned-badge">📌 공지 · NOTICE</div>' : ''}
       <div class="post-item-meta">
         <strong style="color:var(--ink-2);">${isAnon ? '익명' : escapeHtml(p.nickname)}</strong>
         ${!isAnon && p.temperature != null ? `<span class="temp-chip ${tempClass}">${p.temperature}°c · ${p.ilju_kr || ''}</span>` : ''}
