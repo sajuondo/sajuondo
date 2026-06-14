@@ -579,7 +579,39 @@ main.salon {
     <a class="nav-link" href="./report.html">심화 리포트</a>
   </div>
   <div class="nav-auth" id="nav-auth"></div>
+  <!-- 모바일 햄버거 -->
+  <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="메뉴">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- 모바일 풀스크린 메뉴 -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-header">
+    <div style="font-family:'DM Serif Display',serif; font-style:italic; font-size:13px; color:var(--mint-dark); letter-spacing:.22em; text-transform:uppercase;">Menu</div>
+    <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="닫기">×</button>
+  </div>
+  <div class="mobile-menu-eyebrow">서비스</div>
+  <ul class="mobile-menu-list">
+    <li><a href="./index.html#analysis"><span class="mm-han">命</span> 사주</a></li>
+    <li><a href="./index.html#gungham"><span class="mm-han">合</span> 궁합</a></li>
+    <li><a href="./index.html#tarot"><span class="mm-han">✦</span> 타로</a></li>
+    <li><a href="./salon.html" onclick="toggleMobileMenu()"><span class="mm-han">會</span> 온도살롱</a></li>
+    <li><a href="./report.html"><span class="mm-han">運</span> 심화 리포트</a></li>
+    <li><a href="./index.html#prescription"><span class="mm-han">藥</span> 온도 처방전</a></li>
+  </ul>
+  <div class="mobile-menu-eyebrow">계정</div>
+  <ul class="mobile-menu-list">
+    <li><a href="./index.html?my=1"><span class="mm-han">☽</span> MY</a></li>
+  </ul>
+</div>
+<div class="mobile-menu-backdrop" id="mobile-menu-backdrop" onclick="toggleMobileMenu()"></div>
+
+<!-- 플로팅 스크롤 화살표 -->
+<div class="scroll-arrows">
+  <button class="scroll-arrow-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
+  <button class="scroll-arrow-btn" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})" aria-label="맨 아래로">↓</button>
+</div>
 
 <!-- ─────────── MAIN ─────────── -->
 <main class="salon">
@@ -801,16 +833,22 @@ main.salon {
   </div>
 </div>
 
-<!-- ─────────── 모바일 탭바 ─────────── -->
+<!-- ─────────── 모바일 탭바 (5개) ─────────── -->
 <nav class="mobile-tabbar">
-  <a class="tabbar-item" href="./index.html">
-    <span class="tabbar-icon" style="font-family:'DM Serif Display',serif;font-style:italic;">命</span> 분석
+  <a class="tabbar-item" href="./index.html#analysis">
+    <span class="tabbar-icon" style="font-family:'DM Serif Display',serif;font-style:italic;">命</span> 사주
+  </a>
+  <a class="tabbar-item" href="./index.html#gungham">
+    <span class="tabbar-icon" style="font-family:'DM Serif Display',serif;font-style:italic;">合</span> 궁합
+  </a>
+  <a class="tabbar-item" href="./index.html#tarot">
+    <span class="tabbar-icon" style="font-family:'DM Serif Display',serif;font-style:italic;">✦</span> 타로
   </a>
   <a class="tabbar-item active" href="./salon.html">
     <span class="tabbar-icon" style="font-family:'DM Serif Display',serif;font-style:italic;">會</span> 살롱
   </a>
-  <a class="tabbar-item" href="./report.html">
-    <span class="tabbar-icon" style="font-family:'DM Serif Display',serif;font-style:italic;">運</span> 리포트
+  <a class="tabbar-item" href="./index.html?my=1">
+    <span class="tabbar-icon" style="font-family:'DM Serif Display',serif;font-style:italic;">☽</span> MY
   </a>
 </nav>
 
@@ -969,6 +1007,25 @@ const ILGAN_TO_TEAM = {
   // 방별 글 개수 로드 (사이드바 칩 옆 표시)
   loadRoomCounts();
 })();
+
+/* ── 모바일 햄버거 메뉴 토글 ── */
+function toggleMobileMenu(){
+  const menu = document.getElementById('mobile-menu');
+  const backdrop = document.getElementById('mobile-menu-backdrop');
+  const hamburger = document.querySelector('.nav-hamburger');
+  const isOpen = menu.classList.contains('open');
+  if(isOpen){
+    menu.classList.remove('open');
+    backdrop.classList.remove('open');
+    hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+  } else {
+    menu.classList.add('open');
+    backdrop.classList.add('open');
+    hamburger.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
 
 /* ── 사이드바: 방별 글 개수 표시 ── */
 async function loadRoomCounts() {
