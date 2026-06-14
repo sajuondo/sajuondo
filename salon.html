@@ -129,25 +129,64 @@ main.salon {
   flex-shrink: 0;
 }
 
-/* ── 사이드바: 일간 팀 그룹 ── */
-.sidebar-group {
-  margin-bottom: 18px;
+/* ── 사이드바: 일간 팀 (가로 컴팩트 레이아웃) ── */
+.welcome-card {
+  display: block;
+  padding: 16px 18px;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, rgba(0,201,167,.10), rgba(184,146,58,.06));
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all .2s;
 }
-.sidebar-group-label {
-  display: flex; align-items: center; gap: 8px;
+.welcome-card:hover {
+  border-color: var(--mint);
+  transform: translateY(-1px);
+}
+.welcome-card-eyebrow {
   font-family: 'DM Serif Display', serif;
   font-style: italic;
   font-size: 10px;
-  color: var(--ink-3);
-  letter-spacing: .12em;
-  margin: 14px 0 6px;
-  padding-left: 4px;
+  color: var(--mint-dark);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
 }
-.elem-han {
+.welcome-card-title {
   font-family: 'DM Serif Display', serif;
-  font-style: normal;
-  font-size: 13px;
-  font-weight: 400;
+  font-size: 17px;
+  color: var(--ink);
+  line-height: 1.3;
+  letter-spacing: -.01em;
+  margin-bottom: 6px;
+}
+.welcome-card-title em {
+  font-style: italic;
+  color: var(--mint-dark);
+}
+.welcome-card-desc {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+
+.sidebar-elem-row {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line2);
+}
+.sidebar-elem-row:last-child { border-bottom: none; }
+.sidebar-elem-tag {
+  font-family: 'DM Serif Display', serif;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0;
 }
 .elem-wood  { color: #5A7A3A; }
 .elem-fire  { color: #C04A2E; }
@@ -155,16 +194,43 @@ main.salon {
 .elem-metal { color: #6E7A88; }
 .elem-water { color: #3A5A70; }
 
-.team-han {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px; height: 24px;
+.sidebar-chip-group {
+  display: flex; gap: 6px;
+  flex-wrap: wrap;
+}
+.sidebar-chip {
+  display: inline-flex; align-items: center;
+  gap: 5px;
+  padding: 5px 10px 5px 5px;
+  background: rgba(255,255,255,.5);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .18s ease;
+  font-size: 12px;
+  color: var(--ink-2);
+  position: relative;
+}
+.sidebar-chip:hover {
+  background: #fff;
+  border-color: var(--ink-3);
+}
+.sidebar-chip.active {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+.sidebar-chip.active .chip-han {
+  background: rgba(245,241,236,.12);
+  color: var(--cream);
+}
+.chip-han {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px;
   font-family: 'DM Serif Display', serif;
   font-style: italic;
-  font-size: 14px;
+  font-size: 13px;
   border-radius: 50%;
-  margin-right: 8px;
   flex-shrink: 0;
 }
 .team-wood  { background: rgba(90,122,58,.10);  color: #5A7A3A; }
@@ -172,42 +238,48 @@ main.salon {
 .team-earth { background: rgba(138,109,41,.10); color: #8A6D29; }
 .team-metal { background: rgba(110,122,136,.12);color: #6E7A88; }
 .team-water { background: rgba(58,90,112,.10);  color: #3A5A70; }
-
-.sidebar-room {
-  display: flex; flex-direction: column;
-  padding: 8px 12px;
-  margin-bottom: 2px;
-}
-.sidebar-room-name {
-  display: flex; align-items: center;
-  font-size: 13px;
+.chip-name {
   font-weight: 500;
+  letter-spacing: -.01em;
 }
-.sidebar-room-meta {
-  font-family: 'Instrument Serif', serif;
+
+/* "내 팀" 마커 — 작은 점으로 */
+.sidebar-chip.my-team::after {
+  content: '';
+  position: absolute;
+  top: 3px; right: 5px;
+  width: 5px; height: 5px;
+  background: var(--mint);
+  border-radius: 50%;
+}
+
+/* 칩 안 글 개수 */
+.chip-count {
+  font-family: 'DM Serif Display', serif;
   font-style: italic;
   font-size: 11px;
   color: var(--ink-4);
-  margin-top: 1px;
-  padding-left: 32px;
+  margin-left: 4px;
+  letter-spacing: -.02em;
 }
-.sidebar-room.active .sidebar-room-meta { color: rgba(245,241,236,.55); }
+.sidebar-chip.active .chip-count {
+  color: rgba(245,241,236,.65);
+}
 
-.my-team-badge {
-  margin-left: auto;
-  font-family: 'Instrument Serif', serif;
+/* 고민방/자유게시판 글 개수 */
+.room-count {
+  font-family: 'DM Serif Display', serif;
   font-style: italic;
-  font-size: 10px;
-  color: var(--mint-dark);
-  background: rgba(0,201,167,.10);
-  padding: 1px 8px;
-  border-radius: 999px;
-  letter-spacing: .04em;
+  font-size: 11px;
+  color: var(--ink-4);
+  margin-left: 6px;
+  letter-spacing: -.02em;
 }
-.sidebar-room.active .my-team-badge {
-  background: rgba(245,241,236,.15);
-  color: var(--mint);
+.sidebar-room.active .room-count {
+  color: rgba(245,241,236,.65);
 }
+
+/* 고민방/자유게시판은 기존 .sidebar-room 스타일 유지 (위쪽에서 정의됨) */
 
 /* ── 글 목록 ── */
 .post-list { display: flex; flex-direction: column; }
@@ -419,22 +491,6 @@ main.salon {
   display: flex; justify-content: space-between; align-items: center;
 }
 
-/* ── Gate (분석 안 한 사람) ── */
-.gate-prompt {
-  background: linear-gradient(135deg, rgba(0,201,167,.08), rgba(184,146,58,.06));
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 24px;
-  margin-bottom: 24px;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 16px;
-}
-.gate-prompt-text {
-  font-size: 13px;
-  color: var(--ink-2);
-  line-height: 1.6;
-}
-.gate-prompt-text strong { color: var(--ink); font-weight: 500; }
 </style>
 </head>
 
@@ -466,71 +522,89 @@ main.salon {
 
   <!-- 사이드바 -->
   <aside class="sidebar">
+
+    <!-- 첫 방문자용 안내 카드 (사주 분석 안 한 사람만 보임) -->
+    <a href="./index.html" id="welcome-card" class="welcome-card" style="display:none;">
+      <div class="welcome-card-eyebrow">처음이신가요?</div>
+      <div class="welcome-card-title">내 일간부터 <em>확인하기</em> →</div>
+      <div class="welcome-card-desc">사주를 풀면 내 팀으로 자동 안내해드려요.</div>
+    </a>
+
     <div class="sidebar-section">
       <div class="sidebar-eyebrow">Team</div>
 
       <!-- 木 -->
-      <div class="sidebar-group">
-        <div class="sidebar-group-label"><span class="elem-han elem-wood">木</span> 木 Wood</div>
-        <div class="sidebar-room" data-type="ilgan" data-value="gap">
-          <div class="sidebar-room-name"><span class="team-han team-wood">甲</span>갑목</div>
-          <div class="sidebar-room-meta">내 길은 내가 만든다</div>
-        </div>
-        <div class="sidebar-room" data-type="ilgan" data-value="eul">
-          <div class="sidebar-room-name"><span class="team-han team-wood">乙</span>을목</div>
-          <div class="sidebar-room-meta">유연하게 휘어진다</div>
+      <div class="sidebar-elem-row">
+        <div class="sidebar-elem-tag elem-wood">木</div>
+        <div class="sidebar-chip-group">
+          <div class="sidebar-chip" data-type="ilgan" data-value="gap">
+            <span class="chip-han team-wood">甲</span>
+            <span class="chip-name">갑목</span>
+          </div>
+          <div class="sidebar-chip" data-type="ilgan" data-value="eul">
+            <span class="chip-han team-wood">乙</span>
+            <span class="chip-name">을목</span>
+          </div>
         </div>
       </div>
 
       <!-- 火 -->
-      <div class="sidebar-group">
-        <div class="sidebar-group-label"><span class="elem-han elem-fire">火</span> 火 Fire</div>
-        <div class="sidebar-room" data-type="ilgan" data-value="byeong">
-          <div class="sidebar-room-name"><span class="team-han team-fire">丙</span>병화</div>
-          <div class="sidebar-room-meta">세상을 비춘다</div>
-        </div>
-        <div class="sidebar-room" data-type="ilgan" data-value="jeong">
-          <div class="sidebar-room-name"><span class="team-han team-fire">丁</span>정화</div>
-          <div class="sidebar-room-meta">어둠 속의 등불</div>
+      <div class="sidebar-elem-row">
+        <div class="sidebar-elem-tag elem-fire">火</div>
+        <div class="sidebar-chip-group">
+          <div class="sidebar-chip" data-type="ilgan" data-value="byeong">
+            <span class="chip-han team-fire">丙</span>
+            <span class="chip-name">병화</span>
+          </div>
+          <div class="sidebar-chip" data-type="ilgan" data-value="jeong">
+            <span class="chip-han team-fire">丁</span>
+            <span class="chip-name">정화</span>
+          </div>
         </div>
       </div>
 
       <!-- 土 -->
-      <div class="sidebar-group">
-        <div class="sidebar-group-label"><span class="elem-han elem-earth">土</span> 土 Earth</div>
-        <div class="sidebar-room" data-type="ilgan" data-value="mu">
-          <div class="sidebar-room-name"><span class="team-han team-earth">戊</span>무토</div>
-          <div class="sidebar-room-meta">흔들리지 않는다</div>
-        </div>
-        <div class="sidebar-room" data-type="ilgan" data-value="gi">
-          <div class="sidebar-room-name"><span class="team-han team-earth">己</span>기토</div>
-          <div class="sidebar-room-meta">모두를 품는 땅</div>
+      <div class="sidebar-elem-row">
+        <div class="sidebar-elem-tag elem-earth">土</div>
+        <div class="sidebar-chip-group">
+          <div class="sidebar-chip" data-type="ilgan" data-value="mu">
+            <span class="chip-han team-earth">戊</span>
+            <span class="chip-name">무토</span>
+          </div>
+          <div class="sidebar-chip" data-type="ilgan" data-value="gi">
+            <span class="chip-han team-earth">己</span>
+            <span class="chip-name">기토</span>
+          </div>
         </div>
       </div>
 
       <!-- 金 -->
-      <div class="sidebar-group">
-        <div class="sidebar-group-label"><span class="elem-han elem-metal">金</span> 金 Metal</div>
-        <div class="sidebar-room" data-type="ilgan" data-value="gyeong">
-          <div class="sidebar-room-name"><span class="team-han team-metal">庚</span>경금</div>
-          <div class="sidebar-room-meta">단호하게 베어낸다</div>
-        </div>
-        <div class="sidebar-room" data-type="ilgan" data-value="sin">
-          <div class="sidebar-room-name"><span class="team-han team-metal">辛</span>신금</div>
-          <div class="sidebar-room-meta">다듬어진 보석</div>
+      <div class="sidebar-elem-row">
+        <div class="sidebar-elem-tag elem-metal">金</div>
+        <div class="sidebar-chip-group">
+          <div class="sidebar-chip" data-type="ilgan" data-value="gyeong">
+            <span class="chip-han team-metal">庚</span>
+            <span class="chip-name">경금</span>
+          </div>
+          <div class="sidebar-chip" data-type="ilgan" data-value="sin">
+            <span class="chip-han team-metal">辛</span>
+            <span class="chip-name">신금</span>
+          </div>
         </div>
       </div>
 
       <!-- 水 -->
-      <div class="sidebar-group">
-        <div class="sidebar-group-label"><span class="elem-han elem-water">水</span> 水 Water</div>
-        <div class="sidebar-room" data-type="ilgan" data-value="im">
-          <div class="sidebar-room-name"><span class="team-han team-water">壬</span>임수</div>
-          <div class="sidebar-room-meta">큰 흐름을 만든다</div>
-        </div>
-        <div class="sidebar-room" data-type="ilgan" data-value="gye">
-          <div class="sidebar-room-name"><span class="team-han team-water">癸</span>계수</div>
-          <div class="sidebar-room-meta">스며들어 적신다</div>
+      <div class="sidebar-elem-row">
+        <div class="sidebar-elem-tag elem-water">水</div>
+        <div class="sidebar-chip-group">
+          <div class="sidebar-chip" data-type="ilgan" data-value="im">
+            <span class="chip-han team-water">壬</span>
+            <span class="chip-name">임수</span>
+          </div>
+          <div class="sidebar-chip" data-type="ilgan" data-value="gye">
+            <span class="chip-han team-water">癸</span>
+            <span class="chip-name">계수</span>
+          </div>
         </div>
       </div>
     </div>
@@ -565,15 +639,6 @@ main.salon {
 
   <!-- 콘텐츠 영역 -->
   <section class="content">
-
-    <!-- 게이트 안내 (분석 안 한 경우) -->
-    <div id="gate-prompt" class="gate-prompt" style="display:none;">
-      <div class="gate-prompt-text">
-        <strong>읽기는 자유롭게 가능해요.</strong><br>
-        글을 쓰려면 먼저 내 사주의 온도를 확인해주세요.
-      </div>
-      <a href="./index.html" class="btn btn-mint" style="padding:10px 20px;font-size:12px;">분석하기 →</a>
-    </div>
 
     <!-- 글 목록 뷰 -->
     <div id="feed-view">
@@ -781,21 +846,15 @@ const ILGAN_TO_TEAM = {
   // 게이트 안내 표시 여부
   updateGatePrompt();
 
-  // 본인 일간 팀에 "내 팀" 배지 + 자동 진입
+  // 본인 일간 팀에 "내 팀" 마커 + 자동 진입
   if (currentSaju && currentSaju.ilgan) {
     const myTeam = ILGAN_TO_TEAM[currentSaju.ilgan];
     if (myTeam) {
-      const myRoomEl = document.querySelector(`.sidebar-room[data-type="ilgan"][data-value="${myTeam}"]`);
-      if (myRoomEl) {
-        // "내 팀" 배지 추가
-        const nameEl = myRoomEl.querySelector('.sidebar-room-name');
-        if (nameEl && !nameEl.querySelector('.my-team-badge')) {
-          nameEl.insertAdjacentHTML('beforeend',
-            '<span class="my-team-badge">내 팀</span>');
-        }
-        // 본인 팀으로 자동 진입
+      const myChipEl = document.querySelector(`.sidebar-chip[data-type="ilgan"][data-value="${myTeam}"]`);
+      if (myChipEl) {
+        myChipEl.classList.add('my-team');  // 작은 민트 점 마커
         currentRoom = { type: 'ilgan', value: myTeam };
-        myRoomEl.classList.add('active');
+        myChipEl.classList.add('active');
       }
     }
   } else {
@@ -804,12 +863,16 @@ const ILGAN_TO_TEAM = {
     if (freeEl) freeEl.classList.add('active');
   }
 
-  // 사이드바 이벤트
+  // 사이드바 이벤트 — 일간 칩
+  document.querySelectorAll('.sidebar-chip').forEach(el => {
+    el.addEventListener('click', () => {
+      selectRoom(el.dataset.type, el.dataset.value);
+    });
+  });
+  // 사이드바 이벤트 — 고민방/자유게시판
   document.querySelectorAll('.sidebar-room').forEach(el => {
     el.addEventListener('click', () => {
-      const type = el.dataset.type;
-      const value = el.dataset.value;
-      selectRoom(type, value);
+      selectRoom(el.dataset.type, el.dataset.value);
     });
   });
 
@@ -838,24 +901,87 @@ const ILGAN_TO_TEAM = {
 
   // 닉네임 저장
   document.getElementById('btn-save-nickname').addEventListener('click', saveNickname);
+
+  // 방별 글 개수 로드 (사이드바 칩 옆 표시)
+  loadRoomCounts();
 })();
 
+/* ── 사이드바: 방별 글 개수 표시 ── */
+async function loadRoomCounts() {
+  try {
+    const { data, error } = await getSb()
+      .from('posts')
+      .select('room_type, room_value');
+    if (error || !data) return;
+
+    // 집계
+    const counts = {};
+    data.forEach(p => {
+      const key = `${p.room_type}:${p.room_value}`;
+      counts[key] = (counts[key] || 0) + 1;
+    });
+
+    // 일간 칩에 카운트 표시
+    document.querySelectorAll('.sidebar-chip').forEach(el => {
+      const key = `${el.dataset.type}:${el.dataset.value}`;
+      const n = counts[key] || 0;
+      if (n > 0) {
+        const existing = el.querySelector('.chip-count');
+        if (existing) existing.remove();
+        const span = document.createElement('span');
+        span.className = 'chip-count';
+        span.textContent = n;
+        el.appendChild(span);
+      }
+    });
+
+    // 고민방/자유게시판 카운트
+    document.querySelectorAll('.sidebar-room').forEach(el => {
+      const key = `${el.dataset.type}:${el.dataset.value}`;
+      const n = counts[key] || 0;
+      if (n > 0) {
+        const nameEl = el.querySelector('.sidebar-room-name');
+        if (nameEl && !nameEl.querySelector('.room-count')) {
+          const span = document.createElement('span');
+          span.className = 'room-count';
+          span.textContent = n;
+          nameEl.appendChild(span);
+        }
+      }
+    });
+  } catch (e) {
+    console.warn('loadRoomCounts failed', e);
+  }
+}
+
 function updateGatePrompt() {
-  const el = document.getElementById('gate-prompt');
-  if (!SajuStore.hasAnalysis()) {
-    el.style.display = 'flex';
-  } else {
-    el.style.display = 'none';
+  const noAnalysis = !SajuStore.hasAnalysis();
+
+  // 글쓰기 버튼 라벨
+  const btn = document.getElementById('btn-write');
+  if (btn) {
+    btn.innerHTML = noAnalysis ? '✦ 분석하고 글쓰기 →' : '✦ 글쓰기';
+  }
+
+  // 사이드바 안내 카드 (분석 안 한 사람만 노출)
+  const welcomeCard = document.getElementById('welcome-card');
+  if (welcomeCard) {
+    welcomeCard.style.display = noAnalysis ? 'block' : 'none';
   }
 }
 
 function selectRoom(type, value) {
   currentRoom = { type, value };
+  // 일간 칩 active 토글
+  document.querySelectorAll('.sidebar-chip').forEach(el => {
+    el.classList.toggle('active',
+      el.dataset.type === type && el.dataset.value === value);
+  });
+  // 고민방/자유게시판 active 토글
   document.querySelectorAll('.sidebar-room').forEach(el => {
     el.classList.toggle('active',
       el.dataset.type === type && el.dataset.value === value);
   });
-  // 모바일에서 사이드바 자동 닫힘 효과 위해 스크롤 위로
   window.scrollTo({ top: 0, behavior: 'smooth' });
   loadRoom();
 }
@@ -954,12 +1080,12 @@ function escapeHtml(s) {
 /* ── 글쓰기 ── */
 async function openWriteModal() {
   if (!currentUser) {
-    toast('먼저 로그인해주세요');
+    toast('로그인이 필요해요');
     await SajuAuth.signInWithGoogle();
     return;
   }
   if (!SajuStore.hasAnalysis()) {
-    toast('먼저 사주 분석을 해주세요');
+    toast('당신의 일간이 필요해요');
     setTimeout(() => location.href = './index.html', 1500);
     return;
   }
@@ -1108,7 +1234,7 @@ async function loadComments(postId) {
 async function submitComment() {
   if (!currentUser) { await SajuAuth.signInWithGoogle(); return; }
   if (!SajuStore.hasAnalysis()) {
-    toast('먼저 사주 분석을 해주세요');
+    toast('당신의 일간이 필요해요');
     setTimeout(()=>location.href='./index.html', 1500);
     return;
   }
