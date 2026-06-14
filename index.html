@@ -586,10 +586,10 @@ footer { background:var(--bg-dark); color:var(--bg); padding:60px 48px; }
 .footer-bottom { max-width:1200px; margin:36px auto 0; padding-top:24px; border-top:1px solid rgba(245,241,236,.1); display:flex; justify-content:space-between; align-items:center; font-size:11px; opacity:.4; flex-wrap:wrap; gap:8px; }
 
 /* ── 모바일 탭바 ── */
-.mobile-cat-bar { display:none; position:fixed; bottom:0; left:0; right:0; z-index:99; background:rgba(20,18,16,.96); backdrop-filter:blur(16px); border-top:1px solid rgba(245,241,236,.08); padding:8px 0 env(safe-area-inset-bottom,8px); justify-content:space-around; align-items:center; }
-.mobile-cat-item { display:flex; flex-direction:column; align-items:center; gap:3px; text-decoration:none; color:rgba(245,241,236,.45); font-family:'Noto Sans KR',sans-serif; font-size:9px; letter-spacing:.05em; padding:4px 10px; transition:color .2s; min-width:52px; text-align:center; }
+.mobile-cat-bar { display:none; position:fixed; bottom:0; left:0; right:0; z-index:99; background:rgba(20,18,16,.96); backdrop-filter:blur(16px); border-top:1px solid rgba(245,241,236,.08); padding:6px 0 env(safe-area-inset-bottom,6px); justify-content:space-around; align-items:center; }
+.mobile-cat-item { display:flex; flex-direction:column; align-items:center; gap:2px; text-decoration:none; color:rgba(245,241,236,.45); font-family:'Noto Sans KR',sans-serif; font-size:9px; letter-spacing:.04em; padding:4px 6px; transition:color .2s; flex:1; min-width:0; text-align:center; white-space:nowrap; }
 .mobile-cat-item:hover,.mobile-cat-item.active { color:var(--mint); }
-.mobile-cat-icon { font-size:17px; line-height:1; }
+.mobile-cat-icon { font-size:16px; line-height:1; }
 
 
 /* ── 프리뷰 잠금 ── */
@@ -984,10 +984,166 @@ footer { background:var(--bg-dark); color:var(--bg); padding:60px 48px; }
 @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
 @keyframes slideUp { from{ opacity:0; transform:translateY(40px); } to{ opacity:1; transform:translateY(0); } }
 
+/* ─────────── 햄버거 메뉴 + 모바일 풀스크린 메뉴 ─────────── */
+.nav-hamburger {
+  display: none;
+  position: absolute;
+  top: 50%; right: 20px;
+  transform: translateY(-50%);
+  width: 40px; height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 102;
+  padding: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px; height: 1.5px;
+  background: var(--ink);
+  transition: all .3s;
+}
+.nav-hamburger.open span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.nav-hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-hamburger.open span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; right: 0;
+  width: 85%; max-width: 360px;
+  height: 100vh;
+  background: var(--bg);
+  z-index: 200;
+  padding: 24px 28px;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform .3s ease;
+  box-shadow: -2px 0 24px rgba(20,18,16,.08);
+}
+.mobile-menu.open { transform: translateX(0); }
+.mobile-menu-backdrop {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(20,18,16,.4);
+  backdrop-filter: blur(2px);
+  z-index: 199;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.mobile-menu-backdrop.open { opacity: 1; }
+.mobile-menu-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 32px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+.mobile-menu-close {
+  width: 36px; height: 36px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-size: 20px;
+  color: var(--ink-2);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  line-height: 1;
+}
+.mobile-menu-eyebrow {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 11px;
+  color: var(--ink-4);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  margin: 20px 0 12px;
+}
+.mobile-menu-list {
+  list-style: none;
+  padding: 0; margin: 0;
+}
+.mobile-menu-list li {
+  border-bottom: 1px solid var(--line2);
+}
+.mobile-menu-list a {
+  display: flex; align-items: center;
+  padding: 14px 4px;
+  font-size: 15px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: padding .15s;
+}
+.mobile-menu-list a:hover {
+  padding-left: 8px;
+}
+.mm-han {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  width: 28px; height: 28px;
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--mint-dark);
+  background: rgba(0,201,167,.08);
+  border-radius: 50%;
+  margin-right: 14px;
+  flex-shrink: 0;
+}
+
+/* ─────────── 플로팅 스크롤 화살표 (왼쪽 아래) ─────────── */
+.scroll-arrows {
+  position: fixed;
+  left: 16px;
+  bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 80;
+  opacity: .55;
+  transition: opacity .2s;
+}
+.scroll-arrows:hover { opacity: 1; }
+.scroll-arrow-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(20,18,16,.75);
+  color: var(--cream);
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(8px);
+  transition: all .2s;
+  box-shadow: 0 2px 8px rgba(20,18,16,.12);
+}
+.scroll-arrow-btn:hover {
+  background: var(--mint-dark);
+  transform: scale(1.05);
+}
+.scroll-arrow-btn:active {
+  transform: scale(0.95);
+}
+@media (min-width: 901px) {
+  .scroll-arrows { opacity: .7; }
+}
+
 /* ── 반응형 ── */
 @media (max-width:900px) {
-  nav { padding:12px 20px; }
+  nav { padding:12px 20px; position:relative; }
   .nav-links { display:none; }
+  .nav-hamburger { display:flex; }
+  .mobile-menu { display:block; }
+  .mobile-menu-backdrop { display:block; }
   .mobile-cat-bar { display:flex; }
   body { padding-bottom:62px; }
   #home { padding:90px 20px 60px; }
@@ -1053,7 +1209,41 @@ footer { background:var(--bg-dark); color:var(--bg); padding:60px 48px; }
     <li><a href="javascript:void(0)" onclick="openLogin()" id="nav-login" class="nav-cta">로그인</a></li>
     <li><a href="#pricing" class="nav-cta" style="display:none" id="nav-premium">프리미엄</a></li>
   </ul>
+  <!-- 모바일 햄버거 -->
+  <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="메뉴">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- 모바일 풀스크린 메뉴 -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-header">
+    <div style="font-family:'DM Serif Display',serif; font-style:italic; font-size:13px; color:var(--mint-dark); letter-spacing:.22em; text-transform:uppercase;">Menu</div>
+    <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="닫기">×</button>
+  </div>
+  <div class="mobile-menu-eyebrow">서비스</div>
+  <ul class="mobile-menu-list">
+    <li><a href="#analysis" onclick="toggleMobileMenu()"><span class="mm-han">命</span> 사주</a></li>
+    <li><a href="#gungham" onclick="toggleMobileMenu()"><span class="mm-han">合</span> 궁합</a></li>
+    <li><a href="#tarot" onclick="toggleMobileMenu()"><span class="mm-han">✦</span> 타로</a></li>
+    <li><a href="./salon.html"><span class="mm-han">會</span> 온도살롱</a></li>
+    <li><a href="#prescription" onclick="toggleMobileMenu()"><span class="mm-han">藥</span> 온도 처방전</a></li>
+    <li><a href="#youtube" onclick="toggleMobileMenu()"><span class="mm-han">影</span> 유튜브</a></li>
+    <li><a href="#pricing" onclick="toggleMobileMenu()"><span class="mm-han">★</span> 프리미엄</a></li>
+  </ul>
+  <div class="mobile-menu-eyebrow">계정</div>
+  <ul class="mobile-menu-list">
+    <li id="mm-my-item" style="display:none;"><a href="javascript:void(0)" onclick="toggleMobileMenu();openMyPage()"><span class="mm-han">☽</span> MY</a></li>
+    <li id="mm-login-item"><a href="javascript:void(0)" onclick="toggleMobileMenu();openLogin()"><span class="mm-han">→</span> 로그인</a></li>
+  </ul>
+</div>
+<div class="mobile-menu-backdrop" id="mobile-menu-backdrop" onclick="toggleMobileMenu()"></div>
+
+<!-- 플로팅 스크롤 화살표 -->
+<div class="scroll-arrows">
+  <button class="scroll-arrow-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
+  <button class="scroll-arrow-btn" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})" aria-label="맨 아래로">↓</button>
+</div>
 
 <!-- 모바일 탭바 -->
 <div class="mobile-cat-bar">
@@ -2016,6 +2206,7 @@ footer { background:var(--bg-dark); color:var(--bg); padding:60px 48px; }
         <li><a href="#analysis">사주</a></li>
         <li><a href="#gungham">궁합</a></li>
         <li><a href="#tarot">타로</a></li>
+        <li><a href="./salon.html">온도살롱</a></li>
         <li><a href="#prescription">온도 처방전</a></li>
         <li><a href="#youtube">유튜브</a></li>
         <li><a href="#pricing">프리미엄</a></li>
@@ -2586,13 +2777,13 @@ function doAnalysis(){
 
   const coreTempRaw = Math.round((baseTemp + penalty) * 10) / 10;
   const coreTemp = Math.min(40, Math.max(-40, coreTempRaw));
-  const tempLabel = coreTemp >= 30 ? '🔥 극열 — 화기가 작열하는 사주'
-    : coreTemp >= 20 ? '☀️ 더위 — 뜨겁고 활기찬 사주'
-    : coreTemp >= 10 ? '🌤 온기 — 따뜻하고 생동감 있는 사주'
-    : coreTemp >= 0  ? '🍃 봄가을 — 쾌적하고 균형 잡힌 사주'
-    : coreTemp >= -10 ? '🍂 서늘 — 차분하고 정제된 사주'
-    : coreTemp >= -20 ? '❄️ 한기 — 차갑고 깊이 있는 사주'
-    : '🌨 극한 — 금생수 냉기가 강한 사주';
+  const tempLabel = coreTemp >= 30 ? '작열 · 한껏 타오르는 화기'
+    : coreTemp >= 20 ? '한낮 · 뜨겁고 환한 사주'
+    : coreTemp >= 10 ? '온기 · 따뜻하고 생동감 있는 사주'
+    : coreTemp >= 0  ? '청명 · 쾌적하고 균형 잡힌 사주'
+    : coreTemp >= -10 ? '서늘 · 차분하고 정제된 사주'
+    : coreTemp >= -20 ? '한기 · 차갑고 깊이 있는 사주'
+    : '혹한 · 가장 깊은 곳까지 응축된 사주';
   document.getElementById('core-temp-display').textContent=coreTemp+'°c';
   document.getElementById('core-temp-label').textContent=tempLabel;
   // 바 위치: -20° ~ 42° 범위를 0~100%로 매핑
@@ -3048,6 +3239,37 @@ async function initAuth(){try{const{data:{session}}=await _supabase.auth.getSess
 function updateAuthUI(){const loginBtn=document.getElementById('nav-login');const myBtn=document.getElementById('nav-my');if(currentUser){if(loginBtn)loginBtn.style.display='none';if(myBtn){myBtn.style.display='inline';const name=currentUser.user_metadata?.name||currentUser.email.split('@')[0];myBtn.textContent=`${name} ☽`;}}else{if(loginBtn)loginBtn.style.display='inline';if(myBtn)myBtn.style.display='none';}}
 function openModal(id){document.getElementById(id).classList.add('active');}
 function openLogin(){document.getElementById('login-modal').classList.add('active');}
+
+// 모바일 햄버거 메뉴
+function toggleMobileMenu(){
+  const menu = document.getElementById('mobile-menu');
+  const backdrop = document.getElementById('mobile-menu-backdrop');
+  const hamburger = document.querySelector('.nav-hamburger');
+  const isOpen = menu.classList.contains('open');
+  if(isOpen){
+    menu.classList.remove('open');
+    backdrop.classList.remove('open');
+    hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+  } else {
+    // 로그인 상태에 따라 MY/로그인 표시 토글
+    const myItem = document.getElementById('mm-my-item');
+    const loginItem = document.getElementById('mm-login-item');
+    if(myItem && loginItem){
+      if(currentUser){
+        myItem.style.display = 'block';
+        loginItem.style.display = 'none';
+      } else {
+        myItem.style.display = 'none';
+        loginItem.style.display = 'block';
+      }
+    }
+    menu.classList.add('open');
+    backdrop.classList.add('open');
+    hamburger.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
 function openMyPage(){if(!currentUser){openLogin();return;}const name=currentUser.user_metadata?.name||currentUser.email.split('@')[0];document.getElementById('my-user-greeting').textContent=`${name}님, 안녕하세요`;loadArchive();document.getElementById('mypage-modal').classList.add('active');}
 function closeModal(id){document.getElementById(id).classList.remove('active');}
 function switchLoginTab(tab,btn){document.querySelectorAll('#login-modal .my-tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('login-form').style.display=tab==='login'?'block':'none';document.getElementById('signup-form').style.display=tab==='signup'?'block':'none';}
@@ -3072,6 +3294,20 @@ function showToast(msg, scrollTo) {
 }
 document.addEventListener('click',e=>{['login-modal','mypage-modal','terms-modal','privacy-modal'].forEach(id=>{const modal=document.getElementById(id);if(modal&&e.target===modal)closeModal(id);});});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')['login-modal','mypage-modal','terms-modal','privacy-modal'].forEach(id=>closeModal(id));});
+
+// URL ?my=1 자동 MY 페이지 열기 (살롱/리포트에서 MY 탭 클릭 시)
+(function(){
+  if(new URLSearchParams(location.search).get('my')==='1'){
+    // 로그인 상태 확인되면 자동으로 MY 열기
+    setTimeout(()=>{
+      if(typeof openMyPage==='function'){
+        openMyPage();
+        // URL 깔끔하게 정리
+        history.replaceState({},'',location.pathname);
+      }
+    }, 800);
+  }
+})();
 
 // 아카이브
 function getArchive(){try{return JSON.parse(localStorage.getItem('saju_archive')||'[]');}catch(e){return[];}}
