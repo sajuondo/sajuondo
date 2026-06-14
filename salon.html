@@ -279,6 +279,28 @@ main.salon {
   color: rgba(245,241,236,.65);
 }
 
+/* 고민방/자유게시판 한자 배지 (이모지 대체) */
+.topic-han {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px;
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 13px;
+  border-radius: 50%;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+.topic-love   { background: rgba(192,74,46,.08);  color: #B8503A; }
+.topic-career { background: rgba(110,122,136,.10); color: #5A6878; }
+.topic-money  { background: rgba(184,146,58,.10); color: #8A6D29; }
+.topic-health { background: rgba(90,122,58,.10);  color: #5A7A3A; }
+.topic-family { background: rgba(138,109,41,.08); color: #8A6D29; }
+.topic-free   { background: rgba(58,90,112,.08);  color: #3A5A70; }
+.sidebar-room.active .topic-han {
+  background: rgba(245,241,236,.12);
+  color: var(--cream);
+}
+
 /* 고민방/자유게시판은 기존 .sidebar-room 스타일 유지 (위쪽에서 정의됨) */
 
 /* ── 글 목록 ── */
@@ -318,6 +340,13 @@ main.salon {
   font-size: 11px; color: var(--ink-4);
   margin-top: 10px;
   letter-spacing: .04em;
+}
+.post-item-stats em {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 10px;
+  letter-spacing: .08em;
+  margin-right: 2px;
 }
 
 /* ── 빈 상태 ── */
@@ -610,28 +639,28 @@ main.salon {
     </div>
 
     <div class="sidebar-section">
-      <div class="sidebar-eyebrow">고민 카테고리 · 익명 가능</div>
+      <div class="sidebar-eyebrow">Topic · 익명 가능</div>
       <div class="sidebar-room" data-type="topic" data-value="love">
-        <div class="sidebar-room-name">💗 연애 · 궁합</div>
+        <div class="sidebar-room-name"><span class="topic-han topic-love">緣</span>연애 · 궁합</div>
       </div>
       <div class="sidebar-room" data-type="topic" data-value="career">
-        <div class="sidebar-room-name">💼 진로 · 취업</div>
+        <div class="sidebar-room-name"><span class="topic-han topic-career">業</span>진로 · 취업</div>
       </div>
       <div class="sidebar-room" data-type="topic" data-value="money">
-        <div class="sidebar-room-name">💰 돈 · 재물운</div>
+        <div class="sidebar-room-name"><span class="topic-han topic-money">財</span>돈 · 재물운</div>
       </div>
       <div class="sidebar-room" data-type="topic" data-value="health">
-        <div class="sidebar-room-name">🌿 건강 · 마음</div>
+        <div class="sidebar-room-name"><span class="topic-han topic-health">心</span>건강 · 마음</div>
       </div>
       <div class="sidebar-room" data-type="topic" data-value="family">
-        <div class="sidebar-room-name">🏠 가족 · 관계</div>
+        <div class="sidebar-room-name"><span class="topic-han topic-family">家</span>가족 · 관계</div>
       </div>
     </div>
 
     <div class="sidebar-section">
       <div class="sidebar-eyebrow">Free</div>
       <div class="sidebar-room" data-type="free" data-value="free">
-        <div class="sidebar-room-name">📖 자유 게시판</div>
+        <div class="sidebar-room-name"><span class="topic-han topic-free">言</span>자유 게시판</div>
         <div class="sidebar-room-meta">아무 이야기나</div>
       </div>
     </div>
@@ -740,13 +769,13 @@ main.salon {
 <!-- ─────────── 모바일 탭바 ─────────── -->
 <nav class="mobile-tabbar">
   <a class="tabbar-item" href="./index.html">
-    <span class="tabbar-icon">✦</span> 분석
+    <span class="tabbar-icon" style="font-family:'DM Serif Display',serif;font-style:italic;">命</span> 분석
   </a>
   <a class="tabbar-item active" href="./salon.html">
-    <span class="tabbar-icon">💬</span> 살롱
+    <span class="tabbar-icon" style="font-family:'DM Serif Display',serif;font-style:italic;">會</span> 살롱
   </a>
   <a class="tabbar-item" href="./report.html">
-    <span class="tabbar-icon">📖</span> 리포트
+    <span class="tabbar-icon" style="font-family:'DM Serif Display',serif;font-style:italic;">運</span> 리포트
   </a>
 </nav>
 
@@ -791,11 +820,11 @@ const ROOM_META = {
   'ilgan:im':      { title: '<em>壬</em> 임수', subtitle: '큰 흐름을 만든다 · 양수', anon: false },
   'ilgan:gye':     { title: '<em>癸</em> 계수', subtitle: '스며들어 적신다 · 음수', anon: false },
   // 고민방
-  'topic:love':    { title: '💗 연애 · <em>궁합</em>', subtitle: '익명으로 마음을 털어놓는 곳', anon: true },
-  'topic:career':  { title: '💼 진로 · <em>취업</em>', subtitle: '커리어 고민을 함께 나눠요', anon: true },
-  'topic:money':   { title: '💰 돈 · <em>재물운</em>', subtitle: '돈 이야기, 솔직하게', anon: true },
-  'topic:health':  { title: '🌿 건강 · <em>마음</em>', subtitle: '몸과 마음을 돌보는 대화', anon: true },
-  'topic:family':  { title: '🏠 가족 · <em>관계</em>', subtitle: '가까운 사람들 이야기', anon: true },
+  'topic:love':    { title: '<em>緣</em> 연애 · <em>궁합</em>', subtitle: '익명으로 마음을 털어놓는 곳', anon: true },
+  'topic:career':  { title: '<em>業</em> 진로 · <em>취업</em>', subtitle: '커리어 고민을 함께 나눠요', anon: true },
+  'topic:money':   { title: '<em>財</em> 돈 · <em>재물운</em>', subtitle: '돈 이야기, 솔직하게', anon: true },
+  'topic:health':  { title: '<em>心</em> 건강 · <em>마음</em>', subtitle: '몸과 마음을 돌보는 대화', anon: true },
+  'topic:family':  { title: '<em>家</em> 가족 · <em>관계</em>', subtitle: '가까운 사람들 이야기', anon: true },
   // 자유
   'free:free':     { title: '자유 <em>게시판</em>', subtitle: '아무 이야기나 자유롭게', anon: false }
 };
@@ -816,7 +845,7 @@ const ILGAN_TO_TEAM = {
   if (!SajuAuth.client) {
     console.error('Supabase 초기화 실패. 네트워크를 확인해주세요.');
     document.getElementById('post-list').innerHTML =
-      '<div class="empty-state"><div class="empty-state-emoji">⚠️</div>' +
+      '<div class="empty-state"><div class="empty-state-emoji" style="font-family:\'DM Serif Display\',serif;font-style:italic;font-size:36px;color:var(--ink-3);">·</div>' +
       '<div class="empty-state-title">연결할 수 없어요</div>' +
       '<div class="empty-state-desc">네트워크를 확인하고 새로고침해주세요.</div></div>';
     return;
@@ -982,7 +1011,18 @@ function selectRoom(type, value) {
     el.classList.toggle('active',
       el.dataset.type === type && el.dataset.value === value);
   });
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // 모바일에서는 피드 헤더로 스크롤 (방 바뀐 거 바로 보이게)
+  // 데스크탑에서는 스크롤 위치 그대로 유지 (사이드바가 sticky라 어차피 보임)
+  if (window.innerWidth <= 900) {
+    const feedView = document.getElementById('feed-view');
+    if (feedView) {
+      // nav 높이만큼 offset 빼서 헤더가 nav 바로 아래 오게
+      const top = feedView.getBoundingClientRect().top + window.scrollY - 70;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }
+
   loadRoom();
 }
 
@@ -1056,8 +1096,8 @@ function renderPostItem(p) {
       <div class="post-item-excerpt">${escapeHtml(p.content.slice(0, 120))}</div>
       <div class="post-item-stats">
         <span>♡ ${p.like_count || 0}</span>
-        <span>💬 ${p.comment_count || 0}</span>
-        <span>👁 ${p.view_count || 0}</span>
+        <span><em>RE.</em> ${p.comment_count || 0}</span>
+        <span><em>VIEW.</em> ${p.view_count || 0}</span>
       </div>
     </div>`;
 }
