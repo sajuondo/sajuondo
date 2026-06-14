@@ -636,6 +636,226 @@ footer { background:var(--bg-dark); color:var(--bg); padding:60px 48px; }
 .lock-btn:hover { background: #00b396; transform: translateY(-1px); }
 .lock-hint { font-size: 11px; color: var(--ink-4); }
 
+/* ─────────── PREMIUM CARDS (당신의 사주, 이렇게 씁니다) ─────────── */
+.premium-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 36px 32px 28px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 24px rgba(20,18,16,.04);
+  transition: all .3s ease;
+}
+.premium-card:hover {
+  box-shadow: 0 8px 40px rgba(20,18,16,.08);
+  transform: translateY(-2px);
+}
+.premium-card-num {
+  position: absolute;
+  top: 24px; right: 32px;
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-4);
+  letter-spacing: .08em;
+}
+.premium-card-header {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line2);
+}
+.premium-card-tag {
+  display: inline-block;
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 13px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  letter-spacing: .04em;
+  margin-bottom: 14px;
+}
+.premium-card-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 4vw, 36px);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.premium-card-title em {
+  font-style: italic;
+  color: var(--mint-dark);
+}
+.premium-card-subtitle {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+.premium-card-body {
+  position: relative;
+  min-height: 180px;
+}
+.premium-card-body .lock-preview {
+  max-height: 200px;
+  -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 95%);
+  mask-image: linear-gradient(to bottom, black 30%, transparent 95%);
+}
+.premium-card-overlay {
+  position: absolute;
+  bottom: -8px; left: 0; right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-top: 60px;
+  background: linear-gradient(to bottom, transparent 0%, #fff 50%);
+}
+.premium-card-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  letter-spacing: .04em;
+  padding: 14px 32px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: all .25s ease;
+  box-shadow: 0 6px 24px rgba(20,18,16,.15);
+}
+.premium-card-cta:hover {
+  background: var(--mint-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(0,201,167,.25);
+}
+.premium-card-cta .cta-arrow {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  transition: transform .25s;
+}
+.premium-card-cta:hover .cta-arrow {
+  transform: translateX(4px);
+}
+.premium-card-hint {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--ink-4);
+  letter-spacing: .02em;
+}
+
+/* 통합 구독 CTA */
+.premium-pack-cta {
+  margin-top: 32px;
+  padding: 48px 32px 40px;
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.premium-pack-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at top left, rgba(0,201,167,.18), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(184,146,58,.12), transparent 50%);
+  pointer-events: none;
+}
+.premium-pack-eyebrow {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--mint);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  position: relative;
+}
+.premium-pack-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px;
+  line-height: 1;
+  letter-spacing: -.02em;
+  margin-bottom: 20px;
+  position: relative;
+}
+.premium-pack-price {
+  font-family: 'DM Serif Display', serif;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -.03em;
+  margin-bottom: 8px;
+  position: relative;
+}
+.premium-pack-price em {
+  font-style: italic;
+  color: var(--mint);
+}
+.premium-pack-price span {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: rgba(245,241,236,.5);
+  margin-left: 6px;
+}
+.premium-pack-features {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(245,241,236,.65);
+  margin-bottom: 32px;
+  line-height: 1.7;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+.premium-pack-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--mint);
+  color: var(--ink);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  letter-spacing: .06em;
+  font-weight: 500;
+  padding: 18px 44px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 16px;
+  position: relative;
+  transition: all .25s;
+  box-shadow: 0 8px 32px rgba(0,201,167,.25);
+}
+.premium-pack-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,201,167,.4);
+}
+.premium-pack-note {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 11px;
+  color: rgba(245,241,236,.4);
+  position: relative;
+}
+
+@media (max-width: 600px) {
+  .premium-card { padding: 28px 22px 24px; }
+  .premium-card-num { top: 18px; right: 22px; font-size: 12px; }
+  .premium-card-title { font-size: 24px; }
+  .premium-pack-cta { padding: 36px 24px 32px; }
+  .premium-pack-title { font-size: 28px; }
+  .premium-pack-price { font-size: 44px; }
+}
+
 
 /* ── 온도 히어로 ── */
 .temp-hero {
@@ -840,7 +1060,7 @@ footer { background:var(--bg-dark); color:var(--bg); padding:60px 48px; }
   <a href="#analysis" class="mobile-cat-item" id="tab-saju"><span class="mobile-cat-icon">命</span><span>사주</span></a>
   <a href="#gungham" class="mobile-cat-item" id="tab-gungham"><span class="mobile-cat-icon">合</span><span>궁합</span></a>
   <a href="#tarot" class="mobile-cat-item" id="tab-tarot"><span class="mobile-cat-icon">✦</span><span>타로</span></a>
-  <a href="./salon.html" class="mobile-cat-item" id="tab-salon"><span class="mobile-cat-icon">💬</span><span>살롱</span></a>
+  <a href="./salon.html" class="mobile-cat-item" id="tab-salon"><span class="mobile-cat-icon">會</span><span>살롱</span></a>
   <a href="javascript:void(0)" onclick="openMyPage()" class="mobile-cat-item" id="tab-my"><span class="mobile-cat-icon">☽</span><span>MY</span></a>
 </div>
 
@@ -1094,25 +1314,25 @@ footer { background:var(--bg-dark); color:var(--bg); padding:60px 48px; }
 
   </div><!-- /result-top-pad -->
   <div style="padding:0 20px;">
-  <div id="pillars-summary" style="display:none; margin-bottom:28px; padding:18px 20px; background:rgba(0,201,167,.06); border:1px solid rgba(0,201,167,.15); border-radius:8px;">
-    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+  <div id="pillars-summary" style="display:none; margin-bottom:20px; padding:12px 16px; background:rgba(0,201,167,.05); border:1px solid rgba(0,201,167,.12); border-radius:8px;">
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
       <div>
-        <div style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--mint); margin-bottom:6px;">사주 원국 · On°c 기반</div>
-        <div id="pillars-hanja" style="font-family:'DM Serif Display',serif; font-size:20px; letter-spacing:0.08em; color:var(--ink-light);"></div>
+        <div style="font-size:9px; letter-spacing:0.18em; text-transform:uppercase; color:var(--mint); margin-bottom:4px;">사주 원국 · On°c 기반</div>
+        <div id="pillars-hanja" style="font-family:'DM Serif Display',serif; font-size:14px; letter-spacing:0.06em; color:var(--ink-light);"></div>
       </div>
       <div style="text-align:right;">
-        <div style="font-size:10px; letter-spacing:0.12em; color:var(--ink-muted); margin-bottom:4px;">Core Temp</div>
-        <div id="core-temp-display" style="font-family:'DM Serif Display',serif; font-size:28px; color:var(--mint);"></div>
+        <div style="font-size:9px; letter-spacing:0.12em; color:var(--ink-muted); margin-bottom:2px;">Core Temp</div>
+        <div id="core-temp-display" style="font-family:'DM Serif Display',serif; font-size:20px; color:var(--mint);"></div>
       </div>
     </div>
-    <div style="margin-top:14px;">
-      <div style="height:4px; background:rgba(0,0,0,.06); border-radius:2px; overflow:hidden;">
+    <div style="margin-top:10px;">
+      <div style="height:3px; background:rgba(0,0,0,.06); border-radius:2px; overflow:hidden;">
         <div id="core-temp-bar" style="height:100%; border-radius:2px; background:linear-gradient(90deg,#4a6274,var(--mint),#c4a35a,#b85c38); transition:width 1s ease;"></div>
       </div>
-      <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--ink-muted); margin-top:4px; letter-spacing:0.05em;">
-        <span>❄️ -40°c</span>
+      <div style="display:flex; justify-content:space-between; font-size:9px; color:var(--ink-muted); margin-top:4px; letter-spacing:0.05em;">
+        <span>-40°c</span>
         <span id="core-temp-label" style="color:var(--mint);"></span>
-        <span>🔥 +40°c</span>
+        <span>+40°c</span>
       </div>
     </div>
   </div>
@@ -1202,70 +1422,98 @@ footer { background:var(--bg-dark); color:var(--bg); padding:60px 48px; }
   </div>
 
   <!-- 맞춤 콘텐츠 — 분석 후 자동 생성 -->
-  <div id="custom-content" style="display:none; margin-top:32px;">
+  <div id="custom-content" style="display:none; margin-top:48px;">
 
-    <!-- 헤더 -->
-    <div style="display:flex; align-items:center; gap:12px; margin-bottom:24px; padding-bottom:20px; border-bottom:1px solid var(--line);">
-      <div style="width:8px; height:8px; background:var(--mint); border-radius:50%;"></div>
-      <span style="font-size:11px; letter-spacing:.25em; color:var(--mint); font-weight:700; text-transform:uppercase;">당신의 사주, 이렇게 씁니다</span>
+    <!-- 헤더 (강조) -->
+    <div style="text-align:center; margin-bottom:32px; padding:32px 20px 28px; border-top:1px solid var(--ink); border-bottom:1px solid var(--ink); box-shadow:0 2px 0 var(--ink); position:relative;">
+      <div style="position:absolute; bottom:-4px; left:0; right:0; height:1px; background:var(--ink);"></div>
+      <div style="font-family:'DM Serif Display',serif; font-style:italic; font-size:12px; color:var(--mint-dark); letter-spacing:.22em; text-transform:uppercase; margin-bottom:10px;">— Premium Reading —</div>
+      <h2 style="font-family:'DM Serif Display',serif; font-size:clamp(32px, 5vw, 44px); line-height:1.1; letter-spacing:-.025em; color:var(--ink); margin-bottom:12px;">
+        당신의 사주, <em style="color:var(--mint-dark);">이렇게 씁니다</em>
+      </h2>
+      <p style="font-family:'Instrument Serif',serif; font-style:italic; font-size:15px; color:var(--ink-3); max-width:480px; margin:0 auto;">
+        타고난 사주를 어떻게 써먹을지, 세 가지 깊은 시선으로 풀어드립니다.
+      </p>
     </div>
 
-    <!-- 탭 -->
-    <div style="display:flex; gap:0; border-bottom:2px solid rgba(0,201,167,.15); margin-bottom:32px; overflow-x:auto; scrollbar-width:none;">
-      <button onclick="switchCustomTab(0)" id="ctab-r0"
-        style="flex-shrink:0; background:none; border:none; border-bottom:3px solid var(--mint); margin-bottom:-2px; padding:12px 20px; font-family:'Noto Sans KR',sans-serif; font-size:12px; font-weight:700; color:var(--mint); cursor:pointer; transition:all .2s; white-space:nowrap;">
-        결핍의 미학
-      </button>
-      <button onclick="switchCustomTab(1)" id="ctab-r1"
-        style="flex-shrink:0; background:none; border:none; border-bottom:3px solid transparent; margin-bottom:-2px; padding:12px 20px; font-family:'Noto Sans KR',sans-serif; font-size:12px; font-weight:500; color:var(--ink-3); cursor:pointer; transition:all .2s; white-space:nowrap;">
-        글자 심폐소생술
-      </button>
-      <button onclick="switchCustomTab(2)" id="ctab-r2"
-        style="flex-shrink:0; background:none; border:none; border-bottom:3px solid transparent; margin-bottom:-2px; padding:12px 20px; font-family:'Noto Sans KR',sans-serif; font-size:12px; font-weight:500; color:var(--ink-3); cursor:pointer; transition:all .2s; white-space:nowrap;">
-        온도 조절기
-      </button>
-    </div>
+    <!-- 3개 콘텐츠 카드 (세로 풀폭) -->
 
-    <!-- 패널 0: 결핍의 미학 -->
-    <div id="rpanel0">
-      <div class="lock-wrap">
-        <div class="lock-preview" style="max-height:260px;">
+    <!-- 카드 1: 결핍의 미학 -->
+    <div class="premium-card">
+      <div class="premium-card-num">No. 01</div>
+      <div class="premium-card-header">
+        <div class="premium-card-tag" style="color:#5A7A3A; background:rgba(90,122,58,.08);">缺 · 결핍</div>
+        <h3 class="premium-card-title">결핍의 <em>미학</em></h3>
+        <p class="premium-card-subtitle">내 사주에 없는 것이 진짜 나를 만든다</p>
+      </div>
+      <div class="premium-card-body">
+        <div class="lock-preview" style="max-height:200px;">
           <div id="deficiency-content"></div>
         </div>
-        <div class="lock-overlay">
-          <div class="lock-badge"><span class="lock-icon">🔒</span> 구독 전용</div>
-          <button class="lock-btn" onclick="openSubscribe()">전체 내용 보기 →</button>
-          <span class="lock-hint">프리미엄 구독</span>
+        <div class="premium-card-overlay">
+          <button class="premium-card-cta" onclick="openSubscribe()">
+            <span>잠긴 부분 열기</span>
+            <span class="cta-arrow">→</span>
+          </button>
+          <div class="premium-card-hint">프리미엄 구독 · 월 ₩4,900</div>
         </div>
       </div>
     </div>
 
-    <!-- 패널 1: 글자 심폐소생술 -->
-    <div id="rpanel1" style="display:none;">
-      <div class="lock-wrap">
-        <div class="lock-preview" style="max-height:260px;">
+    <!-- 카드 2: 글자 심폐소생술 -->
+    <div class="premium-card">
+      <div class="premium-card-num">No. 02</div>
+      <div class="premium-card-header">
+        <div class="premium-card-tag" style="color:#C04A2E; background:rgba(192,74,46,.08);">活 · 활용</div>
+        <h3 class="premium-card-title">글자 <em>심폐소생술</em></h3>
+        <p class="premium-card-subtitle">내 사주의 글자 하나하나, 어떻게 살릴 것인가</p>
+      </div>
+      <div class="premium-card-body">
+        <div class="lock-preview" style="max-height:200px;">
           <div id="glyph-manual-content"></div>
         </div>
-        <div class="lock-overlay">
-          <div class="lock-badge"><span class="lock-icon">🔒</span> 구독 전용</div>
-          <button class="lock-btn" onclick="openSubscribe()">전체 내용 보기 →</button>
-          <span class="lock-hint">프리미엄 구독</span>
+        <div class="premium-card-overlay">
+          <button class="premium-card-cta" onclick="openSubscribe()">
+            <span>잠긴 부분 열기</span>
+            <span class="cta-arrow">→</span>
+          </button>
+          <div class="premium-card-hint">프리미엄 구독 · 월 ₩4,900</div>
         </div>
       </div>
     </div>
 
-    <!-- 패널 2: 온도 조절기 -->
-    <div id="rpanel2" style="display:none;">
-      <div class="lock-wrap">
-        <div class="lock-preview" style="max-height:260px;">
+    <!-- 카드 3: 온도 조절기 -->
+    <div class="premium-card">
+      <div class="premium-card-num">No. 03</div>
+      <div class="premium-card-header">
+        <div class="premium-card-tag" style="color:#3A5A70; background:rgba(58,90,112,.08);">調 · 조절</div>
+        <h3 class="premium-card-title">온도 <em>조절기</em></h3>
+        <p class="premium-card-subtitle">차가운 사주는 데우고, 뜨거운 사주는 식히는 방법</p>
+      </div>
+      <div class="premium-card-body">
+        <div class="lock-preview" style="max-height:200px;">
           <div id="temp-control-content"></div>
         </div>
-        <div class="lock-overlay dark">
-          <div class="lock-badge"><span class="lock-icon">🔒</span> 구독 전용</div>
-          <button class="lock-btn" onclick="openSubscribe()">전체 내용 보기 →</button>
-          <span class="lock-hint">프리미엄 구독</span>
+        <div class="premium-card-overlay">
+          <button class="premium-card-cta" onclick="openSubscribe()">
+            <span>잠긴 부분 열기</span>
+            <span class="cta-arrow">→</span>
+          </button>
+          <div class="premium-card-hint">프리미엄 구독 · 월 ₩4,900</div>
         </div>
       </div>
+    </div>
+
+    <!-- 통합 구독 CTA -->
+    <div class="premium-pack-cta">
+      <div class="premium-pack-eyebrow">Saju Ondo · Premium</div>
+      <h3 class="premium-pack-title">세 편 모두 보기</h3>
+      <div class="premium-pack-price">₩<em>4,900</em><span>/월</span></div>
+      <div class="premium-pack-features">
+        결핍의 미학 · 글자 심폐소생술 · 온도 조절기 · 대운 흐름 분석 · 매월 새 콘텐츠
+      </div>
+      <button class="premium-pack-btn" onclick="openSubscribe()">✦ 구독 시작하기</button>
+      <div class="premium-pack-note">언제든 해지 가능 · 토스페이먼츠 안전 결제</div>
     </div>
 
     <!-- 온도살롱 입장 CTA -->
