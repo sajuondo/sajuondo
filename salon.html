@@ -573,14 +573,8 @@ main.salon {
     </div>
     <span class="nav-logo-tag">THE STANDARD OF K-SAJU</span>
   </a>
-  <div class="nav-links">
-    <a class="nav-link" href="./index.html">분석</a>
-    <a class="nav-link active" href="./salon.html">온도살롱</a>
-    <a class="nav-link" href="./report.html">심화 리포트</a>
-  </div>
-  <div class="nav-auth" id="nav-auth"></div>
-  <!-- 모바일 햄버거 -->
-  <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="메뉴">
+  <!-- 햄버거 메뉴 (모든 화면에서 노출) -->
+  <button class="nav-hamburger always-visible" onclick="toggleMobileMenu()" aria-label="메뉴">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -1093,6 +1087,12 @@ function updateGatePrompt() {
 
 function selectRoom(type, value) {
   currentRoom = { type, value };
+
+  // 글 상세 보기 중이면 닫고 목록으로 (★ 버그 수정)
+  document.getElementById('post-detail').classList.remove('show');
+  document.getElementById('feed-view').style.display = 'block';
+  currentPostId = null;
+
   // 일간 칩 active 토글
   document.querySelectorAll('.sidebar-chip').forEach(el => {
     el.classList.toggle('active',
