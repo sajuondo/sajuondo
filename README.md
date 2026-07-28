@@ -138,3 +138,4 @@ Supabase 대시보드 → **Authentication → Providers → Google → Enable**
 
 선희, 일단 여기까지가 STEP 1이에요.
 배포해서 본인이 직접 써보고 어색한 부분 있으면 알려주세요. 다음 단계로 AI 해석 백엔드 분리 → 토스 결제 순으로 가면 돼요. 🍵
+
