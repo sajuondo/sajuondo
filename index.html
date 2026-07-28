@@ -2360,6 +2360,24 @@ const SUPABASE_URL = 'https://ginvsakkdiaqznqwmasz.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_ivnJ7WpsgSf0Xkx0SJPstA_yvr4pwQO';
 const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+// ━━━━ 미리보기 모드 ━━━━
+const PREVIEW = (() => {
+  const p = new URLSearchParams(location.search).get('preview');
+  if (p === 'off') { localStorage.removeItem('sj_preview'); return false; }
+  if (p) localStorage.setItem('sj_preview', p);
+  return localStorage.getItem('sj_preview') === 'ondo2026';
+})();
+
+if (PREVIEW) {
+  document.head.insertAdjacentHTML('beforeend',
+    '<style>.lock-preview{max-height:none !important}' +
+    '.lock-overlay,.premium-card-overlay{display:none !important}</style>');
+  addEventListener('DOMContentLoaded', () => {
+    document.body.insertAdjacentHTML('beforeend',
+      '<div style="position:fixed;bottom:12px;left:12px;z-index:9999;background:#b85c38;' +
+      'color:#fff;padding:6px 12px;border-radius:99px;font-size:11px;">미리보기 모드</div>');
+  });
+}
 // ━━━━ DB (원본 A 전체) ━━━━
 const DB = {
   stems: {
